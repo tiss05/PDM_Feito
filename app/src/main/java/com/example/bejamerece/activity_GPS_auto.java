@@ -15,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class activity_GPS_auto extends FragmentActivity implements OnMapReadyCallback {
 
@@ -22,10 +23,10 @@ public class activity_GPS_auto extends FragmentActivity implements OnMapReadyCal
     private GoogleMap gMap;
     private Button btn_save;
     private Button next;
-    //private DatabaseReference mDatabase;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
+    private FirebaseDatabase mFirestore;
 
 
     @Override
@@ -33,6 +34,7 @@ public class activity_GPS_auto extends FragmentActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps_auto);
         next = (Button) findViewById(R.id.maps_next);
+        //mFirestore = FirebaseFirestore.getInstance();
 
 
 
