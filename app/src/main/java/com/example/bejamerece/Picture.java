@@ -30,11 +30,15 @@ import android.widget.Toast;
 
 import com.example.bejamerece.R;
 
+import java.io.IOException;
+
 
 public class Picture extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
+    private static final int ACTIVITY_SELECT_IMAGE = 1234;
     private ImageView imageView;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
+    private Uri filePath;
 
     /**
      * A variables which will be used
@@ -89,6 +93,19 @@ public class Picture extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(photo);
+            super.onActivityResult(requestCode, resultCode, data);
+
+        }
+
+        if (requestCode == ACTIVITY_SELECT_IMAGE && resultCode == Activity.RESULT_OK) {
+            filePath = data.getData();
+            try {
+                Bitmap photo = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imageView.setImageBitmap(photo);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             super.onActivityResult(requestCode, resultCode, data);
 
         }
