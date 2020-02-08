@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Beja Merece+</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity__gps_auto">Map</string>
+    <string name="comecar">Começar</string>
+    <string name="sybtittle">Onde o talento é apreciado</string>
+    <string name="beja_merece">Beja Merece +</string>
+    <string name="hist">Histórico</string>
+    <string name="localidade">Localidade</string>
+    <string name="tittlePic">Escolha a fonte da fotografia desejada</string>
+    <string name="camera">Camera</string>
+    <string name="galeria">Galeria</string>
+    <string name="next">Seguinte</string>
+    <string name="street">Rua</string>
+    <string name="locM">Insira a localização manualmente</string>
+    <string name="Loc">Localidade</string>
+    <string name="photo">button_send</string>
+    <string name="title_activity_gps_auto">Map</string>
+
+</resources>

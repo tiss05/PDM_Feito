@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "730188930820",
+    "firebase_url": "https://beja-merece.firebaseio.com",
+    "project_id": "beja-merece",
+    "storage_bucket": "beja-merece.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730188930820:android:e71007559a71ef2ca87a51",
+        "android_client_info": {
+          "package_name": "com.example.bejamerece"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730188930820-ai85kpiiu3ijejvfmitcra7t3gmm4k8v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bejamerece",
+            "certificate_hash": "0f900666f8c0aa0467e09d15362a5e0b297d5d53"
+          }
+        },
+        {
+          "client_id": "730188930820-ubpqduqubj9o825d76t8bmvhlonkplmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdBpcj7UPv8EInQymaMsMffHBWDPsg-1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730188930820-ubpqduqubj9o825d76t8bmvhlonkplmf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
