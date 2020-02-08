@@ -34,21 +34,24 @@ import java.io.IOException;
 
 
 public class Picture extends AppCompatActivity {
-    private static final int CAMERA_REQUEST = 1888;
-    private static final int ACTIVITY_SELECT_IMAGE = 1234;
-    private ImageView imageView;
-    private static final int MY_CAMERA_PERMISSION_CODE = 100;
-    private Uri filePath;
 
     /**
      * A variables which will be used
      * **/
+
+    private static final int CAMERA_REQUEST = 1888;
+    private static final int ACTIVITY_SELECT_IMAGE = 1234;
+    private ImageView imageView;
+    private Button next_confirm;
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
+    private Uri filePath;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic);
         this.imageView = (ImageView) this.findViewById(R.id.imageView4);
+        next_confirm = (Button) findViewById(R.id.button_nextFoto);
         Button btn_choose_photo = (Button) findViewById(R.id.button_galery);
         btn_choose_photo.setOnClickListener(btnChoosePhotoPressed);
         Button photoButton = (Button) this.findViewById(R.id.button_camera);
@@ -65,6 +68,14 @@ public class Picture extends AppCompatActivity {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 }
+            }
+        });
+
+        next_confirm.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent intent = new Intent(Picture.this, Confirm.class);
+                startActivity(intent);
             }
         });
     }
