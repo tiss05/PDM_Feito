@@ -18,6 +18,7 @@ public class activity_GPS_manual extends AppCompatActivity {
     private EditText localidade;
     private EditText freguesia;
     private EditText rua;
+    //private Firebase mRoot;
     DatabaseReference reff;
     User user;
 
@@ -33,6 +34,7 @@ public class activity_GPS_manual extends AppCompatActivity {
         next = (Button) findViewById(R.id.button4);
         user=new User();
         reff= FirebaseDatabase.getInstance().getReference().child("User");
+        //mRoot= new Firebase("");
 
 
         /**
@@ -47,12 +49,10 @@ public class activity_GPS_manual extends AppCompatActivity {
                  user.setRua(rua.getText().toString().trim());
 
 
-                 reff.child("User02").setValue(user);
-
+                 reff.child("User02").child("Morada").setValue(user);
                  Toast.makeText(activity_GPS_manual.this, "Morada inserida com sucesso", Toast.LENGTH_SHORT).show();
 
                  //
-
                  Intent intent = new Intent(activity_GPS_manual.this, Personal_Inf.class);
                  startActivity(intent);
 

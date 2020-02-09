@@ -1,5 +1,7 @@
 package com.example.bejamerece;
 
+import android.widget.ImageView;
+
 public class User {
     private String Name;
     private String Number;
@@ -7,6 +9,7 @@ public class User {
     private String Localidade;
     private String Freguesia;
     private String Rua;
+    private String Foto;
 
     public String getName() {
         return Name;
@@ -54,6 +57,14 @@ public class User {
 
     public void setRua(String rua) {
         Rua = rua;
+    }
+
+    public String getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(String foto) {
+        Foto = foto;
     }
 
     public User() {

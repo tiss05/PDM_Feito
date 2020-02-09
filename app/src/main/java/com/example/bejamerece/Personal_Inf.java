@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Personal_Inf extends AppCompatActivity {
     private Button next;
     private EditText info_name, info_email, info_telefone;
-    //FirebaseDatabase database;
+
     DatabaseReference reff;
     User user;
 
@@ -45,8 +45,7 @@ public class Personal_Inf extends AppCompatActivity {
                 user.setNumber(info_telefone.getText().toString().trim());
 
 
-                reff.child("User02").setValue(user);
-
+                reff.child("User02").child("Pers_Info").setValue(user);
                 Toast.makeText(Personal_Inf.this, "Dados inseridos com sucesso", Toast.LENGTH_SHORT).show();
 
                 //

@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.IOException;
 
 
@@ -35,9 +38,9 @@ public class Picture extends AppCompatActivity {
     private Button next_confirm;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private Uri filePath;
-    TextView show_name;
-    EditText et_name;
+    DatabaseReference reff;
     User user;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,9 +51,9 @@ public class Picture extends AppCompatActivity {
         Button btn_choose_photo = (Button) findViewById(R.id.button_galery);
         btn_choose_photo.setOnClickListener(btnChoosePhotoPressed);
         Button photoButton = (Button) this.findViewById(R.id.button_camera);
-        show_name=(TextView) findViewById(R.id.confirm_nome);
-        et_name=(EditText) findViewById(R.id.editText_name);
         user=new User();
+        reff= FirebaseDatabase.getInstance().getReference().child("User");
+
 
         /**
          * This method gonna catch the contact with the camera
@@ -68,6 +71,8 @@ public class Picture extends AppCompatActivity {
         });
 
         next_confirm.setOnClickListener(new View.OnClickListener() {
+
+
 
             public void onClick(View view) {
                 Intent intent = new Intent(Picture.this, Confirm.class);

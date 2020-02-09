@@ -3,6 +3,7 @@ package com.example.bejamerece;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,12 +17,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Confirm extends AppCompatActivity {
-    TextView show_name, show_email, show_telefone, show_morada, show_image;
+    TextView show_name, show_email, show_telefone, show_morada;
     ImageView show_fotografia;
     EditText et_name;
     String str_name,st;
     Button next_confirm_info, btn;
-    DatabaseReference reff;
+    DatabaseReference reff_pers_info, reff_morada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +33,11 @@ public class Confirm extends AppCompatActivity {
         show_telefone = (TextView) findViewById(R.id.confirm_telefone);
         show_morada = (TextView) findViewById(R.id.confirm_morada);
         show_fotografia = (ImageView) findViewById(R.id.confirm_foto);
-        //et_name = (EditText) findViewById(R.id.editText_name);
-        //btn = findViewById(R.id.button_nextFoto);
-        //st = getIntent().getExtras().getString("ABC");
-        //show_name.setText(st);
+        //this.show_fotografia = (ImageView) this.findViewById(R.id.imageView_finalFoto);
 
 
-
-        reff = FirebaseDatabase.getInstance().getReference().child("User").child("User02");
-        reff.addValueEventListener(new ValueEventListener() {
+        reff_pers_info = (FirebaseDatabase.getInstance().getReference().child("User").child("User02").child("Pers_Info"));
+        reff_pers_info.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
@@ -50,7 +47,6 @@ public class Confirm extends AppCompatActivity {
                 show_name.setText(user.getName());
                 show_email.setText(user.getEmail());
                 show_telefone.setText(user.getNumber());
-                show_morada.setText(user.getLocalidade()+" , "+user.getFreguesia()+" , "+user.getRua());
 
             }
 
@@ -60,6 +56,24 @@ public class Confirm extends AppCompatActivity {
             }
 
         });
+
+        reff_morada = (FirebaseDatabase.getInstance().getReference().child("User").child("User02").child("Morada"));
+        reff_morada.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                show_morada.setText(user.getLocalidade() + " , " + user.getFreguesia() + " , " + user.getRua());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+
+        show_fotografia.setImageBitmap(BitMapHelper.getInstance().getBitmap());
     }
 }
 
