@@ -1,41 +1,24 @@
 package com.example.bejamerece;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.webkit.PermissionRequest;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.bejamerece.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 
@@ -54,26 +37,20 @@ public class Picture extends AppCompatActivity {
     private Uri filePath;
     TextView show_name;
     EditText et_name;
-    String str_name;
-    Button next_confirm_info;
-    DatabaseReference reff;
     User user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic);
-        this.imageView = (ImageView) this.findViewById(R.id.imageView4);
+        this.imageView = (ImageView) this.findViewById(R.id.imageView_finalFoto);
         next_confirm = (Button) findViewById(R.id.button_nextFoto);
         Button btn_choose_photo = (Button) findViewById(R.id.button_galery);
         btn_choose_photo.setOnClickListener(btnChoosePhotoPressed);
         Button photoButton = (Button) this.findViewById(R.id.button_camera);
-        show_name=(TextView) findViewById(R.id.tx_nome2);
+        show_name=(TextView) findViewById(R.id.confirm_nome);
         et_name=(EditText) findViewById(R.id.editText_name);
         user=new User();
-
-
-
 
         /**
          * This method gonna catch the contact with the camera
@@ -93,31 +70,7 @@ public class Picture extends AppCompatActivity {
         next_confirm.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                reff = FirebaseDatabase.getInstance().getReference().child("User").child("1");
-                reff.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String name = dataSnapshot.child("name").getValue(Personal_Inf.class).toString();
-                        String email = dataSnapshot.child("email").getValue().toString();
-                        String phone = dataSnapshot.child("number").getValue().toString();
-                        show_name.setText(name);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-
-                });
-                //int viewID=view.getId();
-                /*if(viewID==R.id.button_nextFoto){
-                    str_name=et_name.getText().toString();
-
-                    show_name.setText(str_name);
-
-                }*/
                 Intent intent = new Intent(Picture.this, Confirm.class);
-                //str_name=et_name.getText().toString();
                 startActivity(intent);
             }
         });
@@ -148,7 +101,6 @@ public class Picture extends AppCompatActivity {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(photo);
             super.onActivityResult(requestCode, resultCode, data);
-
         }
 
         if (requestCode == ACTIVITY_SELECT_IMAGE && resultCode == Activity.RESULT_OK) {
@@ -177,29 +129,4 @@ public class Picture extends AppCompatActivity {
 
         }
     };
-    /**
-     * a try chance to open image from gallery
-     * **/
-    protected void onActivityResult1 ( int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case 1234:
-                if (resultCode == RESULT_OK) {
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-
-                    Bitmap image = BitmapFactory.decodeFile(filePath);
-                }
-        }
-    }
 }

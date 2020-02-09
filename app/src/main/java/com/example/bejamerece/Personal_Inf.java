@@ -29,7 +29,6 @@ public class Personal_Inf extends AppCompatActivity {
         info_email=(EditText) findViewById(R.id.editText_email);
         info_telefone=(EditText) findViewById(R.id.editText_phone);
         user=new User();
-        //database=FirebaseDatabase.getInstance();
         reff= FirebaseDatabase.getInstance().getReference().child("User");
 
 
@@ -40,20 +39,18 @@ public class Personal_Inf extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                //int phn = Integer.parseInt(info_telefone.getText().toString().trim());
 
                 user.setName(info_name.getText().toString().trim());
                 user.setEmail(info_email.getText().toString().trim());
                 user.setNumber(info_telefone.getText().toString().trim());
 
+
                 reff.child("User02").setValue(user);
+
                 Toast.makeText(Personal_Inf.this, "Dados inseridos com sucesso", Toast.LENGTH_SHORT).show();
 
-
-
-                //String email = Integer.parseInt(info_name.getText().toString().trim());
+                //
                 Intent intent = new Intent(Personal_Inf.this, Picture.class);
-                //intent.putExtra("abc",Data_name);
                 startActivity(intent);
             }
         });

@@ -9,12 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class activity_GPS_manual extends AppCompatActivity {
 
     private Button next;
     private EditText localidade;
     private EditText freguesia;
     private EditText rua;
+    DatabaseReference reff;
+    User user;
 
 
     @Override
@@ -26,6 +31,8 @@ public class activity_GPS_manual extends AppCompatActivity {
         freguesia = (EditText) findViewById(R.id.editText_freguesia);
         rua = (EditText) findViewById(R.id.editText_rua);
         next = (Button) findViewById(R.id.button4);
+        user=new User();
+        reff= FirebaseDatabase.getInstance().getReference().child("User");
 
 
         /**
@@ -35,6 +42,17 @@ public class activity_GPS_manual extends AppCompatActivity {
 
          public void onClick(View view) {
              if (!freguesia.getText().toString().isEmpty() || !rua.getText().toString().isEmpty() || !localidade.getText().toString().isEmpty()) {
+                 user.setLocalidade(localidade.getText().toString().trim());
+                 user.setFreguesia(freguesia.getText().toString().trim());
+                 user.setRua(rua.getText().toString().trim());
+
+
+                 reff.child("User02").setValue(user);
+
+                 Toast.makeText(activity_GPS_manual.this, "Morada inserida com sucesso", Toast.LENGTH_SHORT).show();
+
+                 //
+
                  Intent intent = new Intent(activity_GPS_manual.this, Personal_Inf.class);
                  startActivity(intent);
 

@@ -43,7 +43,7 @@
         android:background="@drawable/button_main"
         android:gravity="center"
         android:text="@string/galeria"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_finalFoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toEndOf="@+id/button_camera"
@@ -68,12 +68,12 @@
         android:fontFamily="sans-serif-medium"
         android:textColor="#070707"
         android:text="Imagem selecionada:"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_finalFoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView_finalFoto"
         android:layout_width="245dp"
         android:layout_height="217dp"
         android:contentDescription="TODO"
